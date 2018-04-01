@@ -9,7 +9,7 @@ class Product (models.Model):
     specification = models.CharField("规格", max_length=100, blank=True)
     price = models.DecimalField("挂网价", max_digits=10, decimal_places=2, blank=True)
     medicare = models.BooleanField("医保")
-    product_factroy = models.CharField("生产厂家", max_length=150, blank=True)
+    product_factory = models.CharField("生产厂家", max_length=150, blank=True)
     symptoms = models.CharField("适应症", max_length=500)
     present_business = models.CharField("配送商业", max_length=500, blank=True)
     
@@ -17,7 +17,7 @@ class Product (models.Model):
         return self.product_name 
     
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'pk': self.pk})
+        return reverse('product_detail', kwargs={'pk': self.pk})
     
 class Role(models.Model):
     variety_name = models.CharField("品种", max_length=100)
@@ -32,6 +32,9 @@ class BusniessManager(Role):
     
     def __str__(self):
         return self.bm_name
+    
+    def get_absolute_url(self):
+        return reverse('bm_detail', kwargs={'pk': self.pk})
 
 class Customer(Role):
     customer_name = models.CharField("客户名字", max_length=32, unique=True)
@@ -40,6 +43,9 @@ class Customer(Role):
     
     def __str__(self):
         return self.customer_name
+    
+    def get_absolute_url(self):
+        return reverse('customer_detail', kwargs={'pk': self.pk})
 
 class BankAccount(models.Model):
     account = models.IntegerField("银行账号", unique=True)
@@ -47,7 +53,7 @@ class BankAccount(models.Model):
     account_address = models.CharField("开户行", max_length=100)
     
     def __str__(self):
-        return self.account
+        return self.account_holder
     
 class BMRoyaltyByMonth(models.Model):
     date = models.DateField("结算日")

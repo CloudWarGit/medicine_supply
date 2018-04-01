@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% block content %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">客户
+            <a class="btn btn-default" href="customer/add" role="button">添加客户</a>
+            </h1>
+        </div>
+                <!-- /.col-lg-12 -->
+    </div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">添加客户</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<form role="form"  method="post">
+							{% csrf_token %}
+	    					{% bootstrap_form form layout='inline' %}
+	    					{% bootstrap_form_errors form layout='inline' %}
+	   						{% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %} 
